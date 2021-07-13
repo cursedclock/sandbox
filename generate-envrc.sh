@@ -69,14 +69,14 @@ export TINKERBELL_NETWORK_INTERFACE="$tink_interface"
 # Decide on a subnet for provisioning. Tinkerbell should "own" this
 # network space. Its subnet should be just large enough to be able
 # to provision your hardware.
-export TINKERBELL_CIDR=29
+export TINKERBELL_CIDR=$(ip addr show $tink_interface | grep "inet\b" | awk '{print $2}' | cut -d/ -f2)
 
 # Host IP is used by provisioner to expose different services such as
 # tink, boots, etc.
 #
 # The host IP should the first IP in the range, and the Nginx IP
 # should be the second address.
-export TINKERBELL_HOST_IP=192.168.1.1
+export TINKERBELL_HOST_IP=$(ip addr show $tink_interface | grep "inet\b" | awk '{print $2}' | cut -d/ -f1)
 
 # Tink server username and password
 export TINKERBELL_TINK_USERNAME=admin
