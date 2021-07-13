@@ -12,3 +12,5 @@ export TINKERBELL_TINK_CLI_IMAGE="quay.io/tinkerbell/tink-cli:sha-1b178dae"
 export TINKERBELL_TINK_HEGEL_IMAGE="quay.io/tinkerbell/hegel:sha-c8a68311"
 export TINKERBELL_TINK_SERVER_IMAGE="quay.io/tinkerbell/tink:sha-1b178dae"
 export TINKERBELL_TINK_WORKER_IMAGE="quay.io/tinkerbell/tink-worker:sha-1b178dae"
+export OSIE_PATH="./deploy/osie.tar.gz"
+

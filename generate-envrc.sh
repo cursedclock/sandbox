@@ -63,6 +63,12 @@ export TINKERBELL_TINK_BOOTS_IMAGE=${TINKERBELL_TINK_BOOTS_IMAGE}
 export TINKERBELL_TINK_HEGEL_IMAGE=${TINKERBELL_TINK_HEGEL_IMAGE}
 export TINKERBELL_TINK_WORKER_IMAGE=${TINKERBELL_TINK_WORKER_IMAGE}
 
+# Detect if osie is available locally
+cd "$(dirname "$0")"
+if test -f "$OSIE_PATH"; then
+    export TB_OSIE_TAR=$(realpath "$OSIE_PATH")
+fi
+
 # Network interface for Tinkerbell's network
 export TINKERBELL_NETWORK_INTERFACE="$tink_interface"
 
