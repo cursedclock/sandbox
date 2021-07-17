@@ -53,6 +53,13 @@ generate_envrc() (
 	tink_password=$(generate_password)
 	local registry_password
 	registry_password=$(generate_password)
+	
+	cd "$(dirname "$0")"
+	tb_osie_tar=""
+	if test -f "$OSIE_PATH"; then
+		tb_osie_tar="export TB_OSIE_TAR="$(realpath "$OSIE_PATH")
+	fi
+
 	cat <<EOF
 # Tinkerbell Stack version
 
@@ -64,10 +71,7 @@ export TINKERBELL_TINK_HEGEL_IMAGE=${TINKERBELL_TINK_HEGEL_IMAGE}
 export TINKERBELL_TINK_WORKER_IMAGE=${TINKERBELL_TINK_WORKER_IMAGE}
 
 # Detect if osie is available locally
-cd "$(dirname "$0")"
-if test -f "$OSIE_PATH"; then
-    export TB_OSIE_TAR=$(realpath "$OSIE_PATH")
-fi
+${tb_osie_tar}
 
 # Network interface for Tinkerbell's network
 export TINKERBELL_NETWORK_INTERFACE="$tink_interface"
